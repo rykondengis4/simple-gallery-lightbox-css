@@ -1,0 +1,180 @@
+/* font */
+@font-face {
+  font-family: 'BebasNeue';
+  src: url(../font/bebasneue-bold-webfont.woff) format('woff');
+}
+
+/* style */
+
+body {
+  font: 16px/32px 'BebasNeue', 'Arial Narrow', 'arial', sans-serif;
+  background-color: #eaeaea;
+}
+
+h1 {
+  font-size: 80px;
+  margin: 50px auto;
+  text-align: center;
+  text-shadow: 1px 1px 2px white;
+}
+
+.container {
+  width: 600px;
+  margin: auto;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+.gallery li {
+  width: 120px;
+  height: 120px;
+  /* overflow: hidden; */
+  float: left;
+  position: relative;
+  border: 5px solid #666;
+  margin-right: 20px;
+}
+
+.gallery li,
+.gallery li a img,
+.gallery li span {
+  border-radius: 50%;
+}
+
+.gallery li span {
+  display: block;
+  width: 120px;
+  height: 120px;
+  background-color: rgba(200, 200, 200, 0.5);
+  text-align: center;
+  line-height: 120px;
+  color: #333;
+  text-shadow: 1px 1px 2px white;
+  position: absolute;
+  top: 0;
+  transition: 0.3s;
+  opacity: 0;
+  transform: scale(0) rotate(0);
+}
+
+.gallery li a:hover span {
+  opacity: 1;
+  transform: scale(1) rotate(360deg);
+}
+
+.clear {
+  clear: both;
+}
+
+/* overlay */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 9999;
+  transition: 1s;
+  text-align: center;
+  padding: 100px 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.overlay img {
+  max-height: 100%;
+  box-shadow: 2px 2px 7px black;
+}
+
+.overlay .close {
+  color: white;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  text-decoration: none;
+  background-color: black;
+  margin-left: -20px;
+  border: 3px solid white;
+  line-height: 20px;
+  padding: 3px;
+  opacity: 0;
+}
+
+/* target */
+.overlay:target {
+  width: auto;
+  height: auto;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.overlay:target img {
+  animation: fadein 1s;
+}
+
+.overlay:target .close {
+  animation: slidedown 0.5s 0.5s forwards;
+}
+
+.overlay:target .next,
+.overlay:target .back {
+  animation: fade 0.5s 0.5s forwards;
+}
+
+/* nav */
+.next,
+.back {
+  width: 50px;
+  height: 50px;
+  background-image: url(../img/next.png);
+  position: absolute;
+  text-indent: -9999px;
+  top: 45%;
+  margin-left: 50px;
+  opacity: 0;
+}
+
+.back {
+  background-image: url(../img/back.png);
+  margin-left: -100px;
+}
+
+/* animation */
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slidedown {
+  0% {
+    opacity: 0;
+    margin-top: -20px;
+  }
+
+  100% {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
